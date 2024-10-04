@@ -1,121 +1,288 @@
-# 17 Computer Science for JavaScript: Regex Tutorial
+# 18 NoSQL: Social Network API
 
 ## Your Task
 
-Developers write code, but they also *write about code*. Take a moment to search the web for tutorials about any of the subjects you’ve learned so far in this course. You’re likely to find thousands of tutorials written by developers of all skill levels, including junior developers&mdash;like yourself!
+MongoDB is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data. Over the last part of this course, you’ll use several of the technologies that social networking platforms use in their full-stack applications. Because the foundation of these applications is data, it’s important that you understand how to build and structure the API first.
 
-Your assignment this week is to create a tutorial that explains how a specific regular expression, or regex, functions by breaking down each part of the expression and describing what it does. You'll use the template provided in the starter code to create your walkthrough.
+Your Challenge is to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. You’ll use Express.js for routing, a MongoDB database, and the Mongoose ODM. In addition to using the [Express.js](https://www.npmjs.com/package/express) and [Mongoose](https://www.npmjs.com/package/mongoose) packages, you may also optionally use a JavaScript date library of your choice or the native JavaScript `Date` object to format timestamps.
+
+No seed data is provided, so you’ll need to create your own data using Insomnia after you’ve created your API.
+
+Because this application won’t be deployed, you’ll also need to create a walkthrough video that demonstrates its functionality and all of the following acceptance criteria being met. You’ll need to submit a link to the video and add it to the README of your project.
 
 ## User Story
 
 ```md
-AS A web development student
-I WANT a tutorial explaining a specific regex
-SO THAT I can understand the search pattern the regex defines
+AS A social media startup
+I WANT an API for my social network that uses a NoSQL database
+SO THAT my website can handle large amounts of unstructured data
 ```
 
 ## Acceptance Criteria
 
 ```md
-GIVEN a regex tutorial
-WHEN I open the tutorial
-THEN I see a descriptive title and introductory paragraph explaining the purpose of the tutorial, a summary describing the regex featured in the tutorial, a table of contents linking to different sections that break down each component of the regex and explain what it does, and a section about the author with a link to the author’s GitHub profile
-WHEN I click on the links in the table of contents
-THEN I am taken to the corresponding sections of the tutorial
-WHEN I read through each section of the tutorial
-THEN I find a detailed explanation of what a specific component of the regex does
-WHEN I reach the end of the tutorial
-THEN I find a section about the author and a link to the author’s GitHub profile
+GIVEN a social network API
+WHEN I enter the command to invoke the application
+THEN my server is started and the Mongoose models are synced to the MongoDB database
+WHEN I open API GET routes in Insomnia for users and thoughts
+THEN the data for each of these routes is displayed in a formatted JSON
+WHEN I test API POST, PUT, and DELETE routes in Insomnia
+THEN I am able to successfully create, update, and delete users and thoughts in my database
+WHEN I test API POST and DELETE routes in Insomnia
+THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
 ```
 
-## What Is a Regex?
+## Mock Up
 
-A **regex**, which is short for **regular expression**, is a sequence of characters that defines a specific search pattern. When included in code or search algorithms, regular expressions can be used to find certain patterns of characters within a string, or to find and replace a character or sequence of characters within a string. They are also frequently used to validate input. 
+The following animations show examples of the application's API routes being tested in Insomnia.
 
-For example, the following regular expression can be used to verify that user input is a valid email address:
+The following animation shows GET routes to return all users and all thoughts being tested in Insomnia:
 
-`/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`
+![Demo of GET routes to return all users and all thoughts being tested in Insomnia.](./Assets/18-nosql-homework-demo-01.gif)
 
-Each component of this regex has a unique responsibility to make sure that a user enters an email address that begins with an unspecified number of characters preceding the `@` symbol, followed by a domain.
+The following animation shows GET routes to return a single user and a single thought being tested in Insomnia:
 
-Before you get started, watch this [introduction to regular expressions video](https://youtu.be/7DG3kCDx53c) and read [Regex Tutorial: Matching a Username](https://coding-boot-camp.github.io/full-stack/computer-science/regex-tutorial) to learn how to identify the different components that make up a regex. If you need any additional help, there are many resources on the web. Feel free to do your own research to find one that can help you complete this assignment.
+![Demo that shows GET routes to return a single user and a single thought being tested in Insomnia.](./Assets/18-nosql-homework-demo-02.gif)
 
-Once you have a better understanding of what these different parts of a regular expression do, you’ll need to explain what they do for a specific regex.
+The following animation shows the POST, PUT, and DELETE routes for users being tested in Insomnia:
 
-You can choose one of the following regular expressions or you can choose one that you found on your own (with the exception of the one that is covered in the [Regex Tutorial: Matching a Username](https://coding-boot-camp.github.io/full-stack/computer-science/regex-tutorial):
+![Demo that shows the POST, PUT, and DELETE routes for users being tested in Insomnia.](./Assets/18-nosql-homework-demo-03.gif)
 
-* Matching a Hex Value: `/^#?([a-f0-9]{6}|[a-f0-9]{3})$/`
+In addition to this, your walkthrough video should show the POST, PUT, and DELETE routes for thoughts being tested in Insomnia.
 
-* Matching an Email: `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`
+The following animation shows the POST and DELETE routes for a user’s friend list being tested in Insomnia:
 
-* Matching a URL: `/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/`
+![Demo that shows the POST and DELETE routes for a user’s friend list being tested in Insomnia.](./Assets/18-nosql-homework-demo-04.gif)
 
-* Matching an HTML Tag: `/^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$/`
+In addition to this, your walkthrough video should show the POST and DELETE routes for reactions to thoughts being tested in Insomnia.
 
 ## Getting Started
 
-Instead of creating a repository, you’ll publish a GitHub gist. GitHub describes a **gist** as a simple way to share code snippets with others. It’s also an ideal way to demonstrate a technique, teach a principle, or show off a solution. It functions just like a repository, and you’ll use Markdown to create it, just as you do with your READMEs. Gists can include code, images, links, and anything else you can include in a README.
+Be sure to have MongoDB installed on your machine. Follow the [MongoDB installation guide on The Full-Stack Blog](https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb) to install MongoDB locally.
 
-After you’ve downloaded the starter code, learn [how to create a gist](https://help.github.com/en/github/writing-on-github/creating-gists). You can also watch this [video on how to use gists](https://www.youtube.com/watch?v=wc2NlcWjQHw).
+Use the following guidelines to set up your models and API routes:
 
-> **Important**: Make sure to create a **public** gist and add the `.md` file extension to the file name so that your Markdown renders correctly.
+### Models
 
-The starter code is a template with a title, introductory paragraph, summary, and table of contents. The table of contents should link to sections of the tutorial that describe the functionality of each component in the regex. Be sure to rename the template to a unique name that describes your tutorial.
+**User**:
 
-> **Note**: The regular expression that you choose might not include all of the components outlined in the starter code. After you’ve finished your walkthrough, you can remove any sections that you didn’t use.
+- `username`
 
-Each section that describes a component should include more than just one sentence explaining what it does. It should also include a code snippet of that particular component and some examples that meet the requirements of that component.
+  - String
+  - Unique
+  - Required
+  - Trimmed
 
-> **Important**: Make revisions to your gist in the GitHub gist UI. This will create a revision history that graders can use to verify that the tutorial content is yours.
+- `email`
+
+  - String
+  - Required
+  - Unique
+  - Must match a valid email address (look into Mongoose's matching validation)
+
+- `thoughts`
+
+  - Array of `_id` values referencing the `Thought` model
+
+- `friends`
+  - Array of `_id` values referencing the `User` model (self-reference)
+
+**Schema Settings**:
+
+Create a virtual called `friendCount` that retrieves the length of the user's `friends` array field on query.
+
+---
+
+**Thought**:
+
+- `thoughtText`
+
+  - String
+  - Required
+  - Must be between 1 and 280 characters
+
+- `createdAt`
+
+  - Date
+  - Set default value to the current timestamp
+  - Use a getter method to format the timestamp on query
+
+- `username` (The user that created this thought)
+
+  - String
+  - Required
+
+- `reactions` (These are like replies)
+  - Array of nested documents created with the `reactionSchema`
+
+**Schema Settings**:
+
+Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
+
+---
+
+**Reaction** (SCHEMA ONLY)
+
+- `reactionId`
+
+  - Use Mongoose's ObjectId data type
+  - Default value is set to a new ObjectId
+
+- `reactionBody`
+
+  - String
+  - Required
+  - 280 character maximum
+
+- `username`
+
+  - String
+  - Required
+
+- `createdAt`
+  - Date
+  - Set default value to the current timestamp
+  - Use a getter method to format the timestamp on query
+
+**Schema Settings**:
+
+This will not be a model, but rather will be used as the `reaction` field's subdocument schema in the `Thought` model.
+
+### API Routes
+
+**`/api/users`**
+
+- `GET` all users
+
+- `GET` a single user by its `_id` and populated thought and friend data
+
+- `POST` a new user:
+
+```json
+// example data
+{
+  "username": "lernantino",
+  "email": "lernantino@gmail.com"
+}
+```
+
+- `PUT` to update a user by its `_id`
+
+- `DELETE` to remove user by its `_id`
+
+**BONUS**: Remove a user's associated thoughts when deleted.
+
+---
+
+**`/api/users/:userId/friends/:friendId`**
+
+- `POST` to add a new friend to a user's friend list
+
+- `DELETE` to remove a friend from a user's friend list
+
+---
+
+**`/api/thoughts`**
+
+- `GET` to get all thoughts
+
+- `GET` to get a single thought by its `_id`
+
+- `POST` to create a new thought (don't forget to push the created thought's `_id` to the associated user's `thoughts` array field)
+
+```json
+// example data
+{
+  "thoughtText": "Here's a cool thought...",
+  "username": "lernantino",
+  "userId": "5edff358a0fcb779aa7b118b"
+}
+```
+
+- `PUT` to update a thought by its `_id`
+
+- `DELETE` to remove a thought by its `_id`
+
+---
+
+**`/api/thoughts/:thoughtId/reactions`**
+
+- `POST` to create a reaction stored in a single thought's `reactions` array field
+
+- `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
 
 ## Grading Requirements
 
 > **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
 >
-> * A repository that has no code
+> - A repository that has no code
 >
-> * A repository that includes a unique name but nothing else
+> - A repository that includes a unique name but nothing else
 >
-> * A repository that includes only a README file but nothing else
+> - A repository that includes only a README file but nothing else
 >
-> * A repository that only includes starter code
+> - A repository that only includes starter code
 
 This Challenge is graded based on the following criteria:
 
-### Deliverables: 30%
+### Deliverables: 10%
 
-* A valid URL of your GitHub gist.
+- Your GitHub repository containing your application code.
 
-* Your GitHub gist that contains the tutorial Markdown. Your gist must include the `.md` file extension so that your Markdown renders correctly.
+### Walkthrough Video: 37%
 
-### Technical Acceptance Criteria: 50%
+- A walkthrough video that demonstrates the functionality of the social media API must be submitted, and a link to the video should be included in your README file.
 
-* Satisfies all of the above acceptance criteria plus the following:
+  - The walkthrough video must show all of the technical acceptance criteria being met.
 
-    * Revisions to the tutorial must be made in the GitHub gist UI so that graders have access to your revision history.
+  - The walkthrough video must demonstrate how to start the application’s server.
 
-    * The tutorial must cover one of the regex examples listed above or another of your choice. You may NOT use the regex covered in the [Regex Tutorial: Matching a Username](https://coding-boot-camp.github.io/full-stack/computer-science/regex-tutorial).
+  - The walkthrough video must demonstrate GET routes for all users and all thoughts being tested in Insomnia.
 
-    * The tutorial must include sections that correspond to each of the components that make up the regex. You may not need to use all of the sections included in the starter code, but you should include all of the sections that correspond to the different components of the regex you chose.
+  - The walkthrough video must demonstrate GET routes for a single user and a single thought being tested in Insomnia.
 
-    * Each section that describes a component must include more than just one sentence explaining what it does. It’s okay to use online resources for assistance, but do not copy and paste; explain each component in your own words and be thorough.
+  - The walkthrough video must demonstrate POST, PUT, and DELETE routes for users and thoughts being tested in Insomnia.
 
-    * Each section that describes a component must include a code snippet of that particular component. Use backticks to display your code snippets in Markdown.
+  - Walkthrough video must demonstrate POST and DELETE routes for a user’s friend list being tested in Insomnia.
 
-    * Each section that describes a component must include at least one example that meets the requirements of that component.
+  - Walkthrough video must demonstrate POST and DELETE routes for reactions to thoughts being tested in Insomnia.
 
-### Tutorial Clarity and Quality: 20%
+### Technical Acceptance Criteria: 40%
 
-* Tutorial provides a clear explanation of how the regex works. Be as concise as possible.
+- Satisfies all of the preceding acceptance criteria plus the following:
 
-* Tutorial describes each regex component in a separate section.
+  - Uses the [Mongoose package](https://www.npmjs.com/package/mongoose) to connect to a MongoDB database.
+
+  - Includes User and Thought models outlined in the Challenge instructions.
+
+  - Includes schema settings for User and Thought models as outlined in the Challenge instructions.
+
+  - Includes Reactions as the `reaction` field's subdocument schema in the Thought model.
+
+  - Uses functionality to format queried timestamps properly.
+
+### Repository Quality: 13%
+
+- Repository has a unique name.
+
+- Repository follows best practices for file structure and naming conventions.
+
+- Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+
+- Repository contains multiple descriptive commit messages.
+
+- Repository contains a high-quality README with description and a link to a walkthrough video.
+
+### Bonus: +10 Points
+
+Fulfilling the following can add up to 10 points to your grade. Note that the highest grade you can achieve is still 100:
+
+- Application deletes a user's associated thoughts when the user is deleted.
 
 ## Review
 
-You are required to submit the following for review:
+You are required to submit BOTH of the following for review:
 
-* The URL of the GitHub gist. Give the gist a unique name.
+- A walkthrough video demonstrating the functionality of the application and all of the acceptance criteria being met.
 
----
-
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+- The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
