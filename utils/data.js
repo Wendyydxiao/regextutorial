@@ -26,6 +26,21 @@ const thoughtText = [
   "Debugging all day!",
 ];
 
+const reactionText = [
+  "That's awesome!",
+  "Great job!",
+  "Totally agree!",
+  "I love it too!",
+  "Well said!",
+  "I think so too!",
+  "Nice!",
+  "Cool!",
+  "Keep up the good work!",
+  "I'm loving it!",
+  "You're doing great!",
+  "That's interesting!",
+];
+
 const getRandomUsername = () => {
   return names[Math.floor(Math.random() * names.length)];
 };
@@ -41,4 +56,15 @@ const getRandomThoughts = (num, username) => {
   return thoughts;
 };
 
-module.exports = { getRandomUsername, getRandomThoughts };
+const getRandomReactions = (num) => {
+  const reactions = [];
+  for (let i = 0; i < num; i++) {
+    reactions.push({
+      reactionBody: reactionText[Math.floor(Math.random() * reactionText.length)],
+      username: getRandomUsername(),
+    });
+  }
+  return reactions;
+};
+
+module.exports = { getRandomUsername, getRandomThoughts, getRandomReactions}; 
