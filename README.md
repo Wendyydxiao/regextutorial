@@ -42,7 +42,6 @@ GET:
 - /api/users/:userId (Get a single user by ID)
 - /api/thoughts (Get all thoughts)
 - /api/thoughts/:thoughtId (Get a single thought by ID)
-- /api/users/:userId/friends (Get a user's list of friends)
 
 POST:
 
